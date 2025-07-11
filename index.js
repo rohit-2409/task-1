@@ -20,11 +20,15 @@ async function getWeather() {
 
         if (response.ok) {
             weatherInfo.innerHTML = `
-                <h2>${data.name}, ${data.sys.country}</h2>
-                <p>🌡 Temperature: <b>${data.main.temp}°C</b></p>
-                <p>🌥 Weather: <b>${data.weather[0].description}</b></p>
-                <p>💨 Wind Speed: <b>${data.wind.speed} m/s</b></p>
-                <p>💧 Humidity: <b>${data.main.humidity}%</b></p>
+                <div class="weather-card">
+                    <img src="https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png" alt="${data.weather[0].description}">
+                    <div>
+                        <h2>${data.name}, ${data.sys.country}</h2>
+                        <p>🌡 <b>${data.main.temp}°C</b> (${data.weather[0].description})</p>
+                        <p>💨 Wind: <b>${data.wind.speed} m/s</b></p>
+                        <p>💧 Humidity: <b>${data.main.humidity}%</b></p>
+                    </div>
+                </div>
             `;
         } else {
             weatherInfo.innerHTML = `<p>❌ ${data.message}</p>`;
